@@ -7,7 +7,7 @@ var session = require('express-session');
 var expressValidator = require('express-validator');
 var fileUpload = require('express-fileupload');
 var passport = require('passport');
-
+var mkdirp = require('mkdirp')
 // Connect to db
 if (process.env.NODE_ENV == "production") {
     dbURL = process.env.dbURL;
@@ -183,3 +183,14 @@ var port = 3000;
 app.listen(port, function () {
     console.log('Server started on port ' + port);
 });
+
+
+//  Initialize 
+try {
+    mkdirp('public/product_images/')
+    console.log("made directory")
+
+} catch (e) {
+    console.log(e)
+    console.log("Made it already")
+}
