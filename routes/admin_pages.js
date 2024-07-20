@@ -17,6 +17,7 @@ router.get('/', isAdmin, function (req, res) {
     //         pages: pages
     //     });
     // });
+
     Page.find({}).sort({ sorting: 1 })
         .then((pages) => {
             res.render('admin/pages', {

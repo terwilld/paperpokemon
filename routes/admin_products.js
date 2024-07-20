@@ -77,7 +77,6 @@ router.get('/add-product', isAdmin, function (req, res) {
  * POST add product
  */
 router.post('/add-product', function (req, res) {
-
     var imageFile = typeof req.files.image !== "undefined" ? req.files.image.name : "";
 
     req.checkBody('title', 'Title must have a value.').notEmpty();
@@ -144,7 +143,6 @@ router.post('/add-product', function (req, res) {
                         category: category,
                         image: imageFile
                     });
-
                     product.save()
                         .then((dbres) => {
                             mkdirp('public/product_images/' + product._id, function (err) {

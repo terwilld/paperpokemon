@@ -8,17 +8,6 @@ var Page = require('../models/page');
  * GET /
  */
 router.get('/', async function (req, res) {
-
-    // Page.findOne({slug: 'home'}, function (err, page) {
-    //     if (err)
-    //         console.log(err);
-
-    //     res.render('index', {
-    //         title: page.title,
-    //         content: page.content
-    //     });
-    // });
-    console.log("Test")
     currentPage = await Page.findOne({ slug: 'home' })
     if (currentPage == null) {
         console.log("no entry")
@@ -29,15 +18,15 @@ router.get('/', async function (req, res) {
                 content: 'Welcome to my page!'
             }
         )
-        console.log('test')
+
         await newPage.save()
     }
     Page.findOne({ slug: 'home' })
         .then((page) => {
-            console.log("Hello?")
-            console.log(page)
-            console.log(`Page Title: ${page.title}`)
-            console.log(`Page content: ${page.content}`)
+
+            //console.log(page)
+            //console.log(`Page Title: ${page.title}`)
+            //console.log(`Page content: ${page.content}`)
             res.render('index', {
                 title: page.title,
                 content: page.content
@@ -46,7 +35,15 @@ router.get('/', async function (req, res) {
             console.log(err);
         });
 
+    // Page.findOne({slug: 'home'}, function (err, page) {
+    //     if (err)
+    //         console.log(err);
 
+    //     res.render('index', {
+    //         title: page.title,
+    //         content: page.content
+    //     });
+    // });
 
 
 });
