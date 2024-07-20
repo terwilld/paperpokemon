@@ -1,4 +1,6 @@
 /public/product_images/*
 !/public/product_imgates/.gitkeep
+public/product_imgages/*
+!public/product_images/.gitkeep
 /node_modules
 .env
