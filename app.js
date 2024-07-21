@@ -188,9 +188,6 @@ app.listen(port, function () {
 //  Initialize 
 try {
     mkdirp('public/product_images/')
-    console.log("made directory")
-
 } catch (e) {
     console.log(e)
-    console.log("Made it already")
 }
