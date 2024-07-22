@@ -1,32 +1,8 @@
 <% include _layouts/header %>
 
-<style>
-    .my_panel>.panel-body {
-        padding: 0px;
-    }
 
-    .my_panel>.panel-body>img {
-        display: block;
-        max-width: auto;
-        height: auto;
-
-    }
-
-    .my_panel>.panel-body>a {
-        display: block;
-        max-width: auto;
-        height: auto;
-        padding: 10px;
-        border: 5px;
-    }
-
-    .my_panel>.panel-footer {
-        text-align: center;
-    }
-</style>
 
 <div class="row products">
-
     <% products.forEach(function(p){ %>
     <div class="col-lg-4 col-md-4 col-6 col-xs-6">
         <div class="panel panel-default my_panel">
