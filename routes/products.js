@@ -87,14 +87,13 @@ router.get('/:category/:product', function (req, res) {
     console.log(req.session.cart)
     var galleryImages = null;
     var loggedIn = (req.isAuthenticated()) ? true : false;
-
     Product.findOne({ slug: req.params.product })
         .then((product) => {
             var galleryDir = 'public/product_images/' + product._id + '/gallery';
-
             fs.readdir(galleryDir, function (err, files) {
                 if (err) {
                     console.log(err);
+                    res.redirect('/')
                 } else {
                     galleryImages = files;
 
