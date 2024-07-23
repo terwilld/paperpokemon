@@ -1,8 +1,23 @@
 <% include _layouts/header %>
 
 <% if (typeof cart !== "undefined") { %>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<h1 class="page-title">My Cart</h1>
+<div class="jumbotron text-center">
+    <div class="fa-4x">
+
+        <i class="fa fas fa-check" style="color:#2ECC71"></i>
+
+    </div>
+    <h1 class="display-3">Thank you</h1>
+    <p class="lead"><strong>Your Purchase has been processed!</p>
+    <p class="lead"><strong>Your Order Number is: #<%=order.orderNumber%> </p>
+    <hr>
+    <p>
+        <a href="/">Thank you for buying some of my pokemon!</a>
+    </p>
+</div>
+
 <br><br>
 
 <table class="table table-striped alignmiddle">
@@ -26,9 +41,7 @@
         <td>$<%= product.price %></td>
         <td><%= product.qty %></td>
         <td>
-            <a href="/cart/update/<%= product.title %>?action=add">+</a>&nbsp;
-            <a href="/cart/update/<%= product.title %>?action=remove">-</a>&nbsp;
-            <a href="/cart/update/<%= product.title %>?action=clear">Clear</a>&nbsp;
+
         </td>
         <td>$<%= sub %></td>
     </tr>
@@ -38,18 +51,17 @@
     </tr>
     <tr>
         <td colspan="0" align="left">
-            <a class="btn btn-success" href="/cart/confirmation">Fake CJ Checkout</a>
+            <a class="btn btn-success" href="/">Home</a>
         </td>
-        <td colspan="4" align="right">
-            <a class="clearcart btn btn-danger" href="/cart/clear">Clear cart</a>
-        </td>
-        <td colspan="4" align="right">
-            <a class="btn btn-primary buynow" href="#">Buy now</a>
-        </td>
+
     </tr>
     <tr>
 
     </tr>
+
+    <iframe height="1" width="1" frameborder="0" scrolling="no"
+        src="https://www.emjcd.com/tags/c?containerTagId=<CONTAINERID>&AMOUNT=<AMOUNT>&CID=<ENTERPRISEID>&OID=<OID>&TYPE=<ACTIONID>&CJEVENT=<CJEVENTID>&CURRENCY=<CURRENCY>"
+        name=Conversiontag> </iframe>
 
 </table>
 

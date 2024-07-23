@@ -3,6 +3,7 @@ var router = express.Router();
 
 // Get Product model
 var Product = require('../models/product');
+var Order = require('../models/order')
 
 /*
  * GET add product to cart
@@ -170,6 +171,62 @@ router.get('/buynow', function (req, res) {
     res.sendStatus(200);
 
 });
+
+
+router.get('/confirmation', async function (req, res) {
+    var cart = req.session.cart;
+
+    console.log(cart)
+
+    if (req.session.cart && req.session.cart.length == 0) {
+        delete req.session.cart;
+        res.redirect('/cart/checkout');
+    } else {
+        req.session.cart = []
+        var total = 0
+        maxOrder = await Order.findOne()
+            .sort({ orderNumber: -1 })
+
+        if (maxOrder == null) {
+            newOrder = new Order({ orderNumber: 1 })
+
+
+        } else {
+            maxOrderNumber = maxOrder.orderNumber
+
+            newOrder = new Order({ orderNumber: maxOrderNumber + 1 })
+        }
+
+        newOrderItems = []
+
+        for (item of cart) {
+            console.log(item)
+            newItem = {
+                name: item.title,
+                price: parseInt(item.price),
+                qty: item.qty,
+                SKU: item.title
+            }
+            total = total += parseInt(item.price) * item.qty
+
+            newOrderItems.push(newItem)
+        }
+        newOrder.order = newOrderItems
+        await newOrder.save()
+
+
+
+
+
+        res.render('confirmation', {
+            title: 'Thank you!',
+            cart: cart,
+            order: newOrder,
+            total: total
+        });
+    }
+})
+
 
 // Exports
 module.exports = router;

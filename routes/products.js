@@ -83,8 +83,8 @@ router.get('/:category', function (req, res) {
  * GET product details
  */
 router.get('/:category/:product', function (req, res) {
-    console.log("This is my current shopping cart")
-    console.log(req.session.cart)
+    //console.log("This is my current shopping cart")
+    //console.log(req.session.cart)
     var galleryImages = null;
     var loggedIn = (req.isAuthenticated()) ? true : false;
     Product.findOne({ slug: req.params.product })
