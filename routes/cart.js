@@ -176,7 +176,7 @@ router.get('/buynow', function (req, res) {
 router.get('/confirmation', async function (req, res) {
     var cart = req.session.cart;
 
-    console.log(cart)
+    //console.log(cart)
 
     if (req.session.cart && req.session.cart.length == 0) {
         delete req.session.cart;
@@ -190,15 +190,12 @@ router.get('/confirmation', async function (req, res) {
         if (maxOrder == null) {
             newOrder = new Order({ orderNumber: 1 })
 
-
         } else {
             maxOrderNumber = maxOrder.orderNumber
-
             newOrder = new Order({ orderNumber: maxOrderNumber + 1 })
         }
 
         newOrderItems = []
-
         for (item of cart) {
             console.log(item)
             newItem = {
@@ -208,15 +205,10 @@ router.get('/confirmation', async function (req, res) {
                 SKU: item.title
             }
             total = total += parseInt(item.price) * item.qty
-
             newOrderItems.push(newItem)
         }
         newOrder.order = newOrderItems
         await newOrder.save()
-
-
-
-
 
         res.render('confirmation', {
             title: 'Thank you!',
