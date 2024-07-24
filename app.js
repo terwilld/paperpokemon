@@ -172,10 +172,14 @@ var adminPages = require('./routes/admin_pages.js');
 var adminCategories = require('./routes/admin_categories.js');
 var adminProducts = require('./routes/admin_products.js');
 var api = require('./routes/api.js')
+var adminOrders = require('./routes/adminOrders.js')
+var adminClicks = require('./routes/adminClicks.js')
 
 app.use('/admin/pages', adminPages);
 app.use('/admin/categories', adminCategories);
 app.use('/admin/products', adminProducts);
+app.use('/admin/orders', adminOrders)
+app.use('/admin/clicks', adminClicks)
 app.use('/products', products);
 app.use('/cart', cart);
 app.use('/users', users);

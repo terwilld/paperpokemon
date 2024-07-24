@@ -1,0 +1,70 @@
+<%- include('../_layouts/adminheader') %>
+
+<h2 class="page-title">Orders</h2>
+
+
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="/css/users/users.css" />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title text-uppercase mb-0">View Orders</h5>
+                </div>
+                <div class="table-responsive">
+                    <table class="table no-wrap user-table mb-0">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="border-0 text-uppercase font-medium pl-4">#</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Buyer</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Total Cost</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Count of Items</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Purchase Time</th>
+                                <th scope="col" class="border-0 text-uppercase font-medium">Publisher ID</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <%  for (let Order = 0; Order< Orders.length; Order++) { %>
+                            <tr>
+                                <td class="pl-4"><%=Orders[Order].orderNumber%></td>
+                                <td>
+                                    <h5 class="font-medium mb-0"><%=Orders[Order].buyer%></h5>
+
+                                </td>
+                                <td>
+
+                                    <span class="text-muted"><%=Orders[Order].total%></span>
+                                </td>
+                                <td>
+                                    <span class="text-muted"><%=Orders[Order].itemCount%></span><br>
+                                </td>
+                                <td>
+                                    <span class="text-muted"><%=Orders[Order].purchaseTime%></span><br>
+
+                                </td>
+                                <td>
+                                    <span class="text-muted">This is broken needs a fix</span><br>
+
+                                </td>
+                            </tr>
+                            <% }%>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src=" https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="/js/users/users.js"></script>
+
+
+<%- include('../_layouts/adminfooter') %>

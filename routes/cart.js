@@ -4,7 +4,7 @@ var router = express.Router();
 // Get Product model
 var Product = require('../models/product');
 var Order = require('../models/order')
-
+var Click = require('../models/click')
 /*
  * GET add product to cart
  */
@@ -196,6 +196,7 @@ router.get('/confirmation', async function (req, res) {
         }
 
         newOrderItems = []
+        itemCount = 0
         for (item of cart) {
             //console.log(item)
             newItem = {
@@ -204,11 +205,27 @@ router.get('/confirmation', async function (req, res) {
                 qty: item.qty,
                 SKU: item.title
             }
+            itemCount = itemCount += item.qty
             total = total += parseInt(item.price) * item.qty
             newOrderItems.push(newItem)
         }
         newOrder.order = newOrderItems
+        newOrder.itemCount = itemCount
+        newOrder.buyer = req.user.username
+        newOrder.total = total
+
+        foundClick = await Click.find({ clickID: req.cookies.eventID })
+
+
+        // Bug in here
+        if (foundClick == null) {
+            newOrder.publisherID = 'No publisher found'
+
+        } else {
+            newOrder.publisherID = foundClick.publisherID
+        }
         await newOrder.save()
+
 
         res.render('confirmation', {
             title: 'Thank you!',

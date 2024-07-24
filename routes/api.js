@@ -28,12 +28,12 @@ router.get('/click', async function (req, res) {
 
 router.get('/converted', async function (req, res) {
 
-    console.log(req.query)
+    //(req.query)
     var CJEVENT = parseInt(req.query.CJEVENT)
-    console.log(CJEVENT)
+    //console.log(CJEVENT)
     convertedClick = await Click.findOne({ clickID: CJEVENT })
     try {
-        console.log(convertedClick)
+        //console.log(convertedClick)
 
         convertedClick.converted = true
         convertedClick.total = req.query.AMOUNT
@@ -41,7 +41,7 @@ router.get('/converted', async function (req, res) {
         convertedClick.externalOrderNumber = req.query.OID
         convertedClick.timeConverted = Date.now()
         await convertedClick.save()
-        console.log(convertedClick)
+        //console.log(convertedClick)
 
     } catch (e) {
         console.log(e)
