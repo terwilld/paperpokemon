@@ -63,6 +63,12 @@
         src="https://www.emjcd.com/tags/c?containerTagId=1&AMOUNT=<%=total%>&CID=4321&OID=<%=order.orderNumber%>&TYPE=<ACTIONID>&CJEVENT=<CJEVENTID>&CURRENCY=USD"
         name=Conversiontag> </iframe>
 
+    <iframe height="1" width="1" frameborder="0" scrolling="no"
+        src="/api/converted?&OID=<%=order.orderNumber%>&CJEVENT=<%=CJEVENT%>&AMOUNT=<%=total%>&CURRENCY=USD"
+        name=Conversiontag> </iframe>
+
+
+
 </table>
 
 <form class="pp" action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">

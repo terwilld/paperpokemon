@@ -8,6 +8,8 @@ var expressValidator = require('express-validator');
 var fileUpload = require('express-fileupload');
 var passport = require('passport');
 var mkdirp = require('mkdirp')
+var cookieParser = require('cookie-parser')
+
 // Connect to db
 if (process.env.NODE_ENV == "production") {
     dbURL = process.env.dbURL;
@@ -31,7 +33,7 @@ var app = express();
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
+app.use(cookieParser())
 // Set public folder
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -169,6 +171,7 @@ var users = require('./routes/users.js');
 var adminPages = require('./routes/admin_pages.js');
 var adminCategories = require('./routes/admin_categories.js');
 var adminProducts = require('./routes/admin_products.js');
+var api = require('./routes/api.js')
 
 app.use('/admin/pages', adminPages);
 app.use('/admin/categories', adminCategories);
@@ -177,9 +180,10 @@ app.use('/products', products);
 app.use('/cart', cart);
 app.use('/users', users);
 app.use('/', pages);
+app.use('/api', api)
 
 // Start the server
-var port = 3000;
+var port = 3001;
 app.listen(port, function () {
     console.log('Server started on port ' + port);
 });

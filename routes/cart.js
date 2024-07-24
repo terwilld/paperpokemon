@@ -197,7 +197,7 @@ router.get('/confirmation', async function (req, res) {
 
         newOrderItems = []
         for (item of cart) {
-            console.log(item)
+            //console.log(item)
             newItem = {
                 name: item.title,
                 price: parseInt(item.price),
@@ -214,7 +214,8 @@ router.get('/confirmation', async function (req, res) {
             title: 'Thank you!',
             cart: cart,
             order: newOrder,
-            total: total
+            total: total,
+            CJEVENT: req.cookies.eventID
         });
     }
 })
